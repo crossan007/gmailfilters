@@ -224,7 +224,14 @@ func getExistingFilters() ([]filter, error) {
 		} else if gmailFilter.Criteria.From > "" {
 			f.Query = "from:(" + gmailFilter.Criteria.From + ")"
 			isFilterValid = true
+		} else if gmailFilter.Criteria.Subject > "" {
+			f.Query = "subject:(" + gmailFilter.Criteria.Subject + ")"
+			isFilterValid = true
+		} else if gmailFilter.Criteria.To > "" {
+			f.Query = "to:(" + gmailFilter.Criteria.To + ")"
+			isFilterValid = true
 		}
+
 		if isFilterValid && gmailFilter.Action != nil {
 			if len(gmailFilter.Action.AddLabelIds) > 0 {
 				labelID := gmailFilter.Action.AddLabelIds[0]
